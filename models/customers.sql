@@ -1,8 +1,9 @@
 {{config(materialized="table")}}
+
 with
     customers as (
         select id as customer_id, first_name, last_name
-        from dbt-tutorial.jaffle_shop.customers
+        from {{ source("jaffle_shop","customers")}}
 
     ),
 
@@ -12,7 +13,7 @@ with
         user_id as customer_id,
         order_date,
         status
-        from dbt-tutorial.jaffle_shop.orders
+        from {{ source("jaffle_shop","orders")}}
     ),
 
     payments as (
@@ -20,7 +21,7 @@ with
         orderid as order_id, 
         paymentmethod as payment_method, 
         amount / 100 as amount
-        from dbt-tutorial.stripe.payment
+        from {{ source("stripe","payment")}}
     ),
 
     customer_orders as (
