@@ -2,26 +2,15 @@
 
 with
     customers as (
-        select id as customer_id, first_name, last_name
-        from {{ source("jaffle_shop","customers")}}
-
+        select * from {{ ref("stg_jarfle_shop_customers")}}
     ),
 
     orders as (
-        select
-        id as order_id,
-        user_id as customer_id,
-        order_date,
-        status
-        from {{ source("jaffle_shop","orders")}}
+        select * from {{ ref("stg_jarfle_shop_orders")}}
     ),
 
     payments as (
-        select id as payment_id, 
-        orderid as order_id, 
-        paymentmethod as payment_method, 
-        amount / 100 as amount
-        from {{ source("stripe","payment")}}
+        select * from {{ ref("stg_stripes_payment")}}
     ),
 
     customer_orders as (
