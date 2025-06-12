@@ -2,15 +2,15 @@
 
 with
     customers as (
-        select * from {{ ref("stg_jarfle_shop_customers")}}
+        select * from {{ ref("stg_jaffle_shop__customers")}}
     ),
 
     orders as (
-        select * from {{ ref("stg_jarfle_shop_orders")}}
+        select * from {{ ref("stg_jaffle_shop__orders")}}
     ),
 
     payments as (
-        select * from {{ ref("stg_stripes_payment")}}
+        select * from {{ ref("stg_stripes__payment")}}
     ),
 
     customer_orders as (

@@ -1,0 +1,11 @@
+version: 2
+
+sources:  
+  - name: stripe                                  # alias for the source (used in source() references)
+    database: dbt-tutorial                        # e.g Google BigQuery project ID where the source data resides
+    schema: stripe                                # e.g Google dataset ID
+    description: Data loaded into our datawarehouse from source systems 
+    tables:
+      - name: payment
+        description: Table containing individual customer's payment information
+      
