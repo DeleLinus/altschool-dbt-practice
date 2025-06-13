@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Wide table containing information on all customers
+  - name: fct_orders
+    description: Wide table containing information on all orders

@@ -1,6 +1,6 @@
-{{config(materialized="ephemeral")}}
+{{ config(materialized="ephemeral") }}
 
-{%- set payment_method = ['coupon', 'credit_card', 'bank_transfer', 'gift_card']-%} -- hyphen to remove trailing spaces
+{%- set payment_methods = ['coupon', 'credit_card', 'bank_transfer', 'gift_card']-%} -- hyphen to remove trailing spaces
 
 with
     orders as (select * from {{ ref("stg_jaffle_shop__orders") }} ),
@@ -9,7 +9,7 @@ with
 
     order_payments as (
         select order_id,
-                {% for method in payment_method -%}
+                {% for method in payment_methods -%}
                 sum(case when payment_method = '{{ method }}' then amount end) as {{ method }}_amount,
                 {% endfor -%}
         sum(case when status = 'success' then amount end) as total_amount
