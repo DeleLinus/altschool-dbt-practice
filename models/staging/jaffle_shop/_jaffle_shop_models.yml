@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: stg_jaffle_shop__customers
+    description: View built on customers table
+  - name: stg_jaffle_shop__orders
+    description: View built on orders table

@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: int_order_payments_pivoted
+    description: Summarization of orders by payment methods

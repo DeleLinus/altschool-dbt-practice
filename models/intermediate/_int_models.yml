@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: int_customer_orders_aggregated
+    description: Summarization of orders by customer
+  - name: int_customer_payments_aggregated
+    description: Summarization of payments by customer
