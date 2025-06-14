@@ -1,5 +1,26 @@
 version: 2
 
 models:
-  - name: stg_stripes__payments
+  - name: stg_stripes__payment
     description: View built on payments table
+    columns:
+      - name: payment_id
+        tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        tests:
+          - relationships:
+              to: ref('stg_jaffle_shop__orders')
+              field: order_id
+
+      - name: payment_method
+        tests:
+          - accepted_values:
+              values: ['coupon', 'gift_card', 'bank_transfer', 'credit_card']
+      
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['fail', 'success']
