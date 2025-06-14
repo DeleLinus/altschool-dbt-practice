@@ -4,4 +4,23 @@ models:
   - name: dim_customers
     description: Wide table containing information on all customers
   - name: fct_orders
-    description: Wide table containing information on all orders
+    description: Wide table containing information on all orders as well as some information on payments
+    columns:
+      - name: order_id
+        description: Unique identifier for orders
+      - name: customer_id
+        description: Foreign key to the customers' table
+      - name: order_date
+        description: Date the order was placed
+      - name: status
+        description: '{{ doc("orders_status") }}'
+      - name: coupon_amount
+        description: Amount of order paid using coupon codes
+      - name: gift_card_amount
+        description: Amount of order paid using gift cards
+      - name: credit_card_amount
+        description: Amount of order paid using credit card
+      - name: bank_transfer
+        description: Amount of order paid using bank transfer
+      - name: amount
+        description: Total amount of order placed
