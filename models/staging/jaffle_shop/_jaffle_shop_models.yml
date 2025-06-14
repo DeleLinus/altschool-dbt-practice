@@ -3,5 +3,27 @@ version: 2
 models:
   - name: stg_jaffle_shop__customers
     description: View built on customers table
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+          
+
   - name: stg_jaffle_shop__orders
     description: View built on orders table
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_jaffle_shop__orders')
+              field: customer_id
+              
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'returned', 'completed', 'return_pending']
